@@ -22,7 +22,27 @@ namespace MyGame
             {
                 Console.WriteLine("{0} {1} {2}", enemies[i].GetName() , enemies[i].GetHealth(),  enemies[i].GetShield());
             }
+            bool willPowerup = true;
+            while (willPowerup)
+            {
+                Console.Write("Want to PowerUp? (y/n)" );
+                string answer = Console.ReadLine();
+                if (answer == "n") willPowerup = false;
+                if (answer == "y") PowerUpEnemy();
+            }
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.WriteLine("{0} {1} {2}", enemies[i].GetName() , enemies[i].GetHealth(),  enemies[i].GetShield());
+            }
             
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.WriteLine("Poweredup {0} times", enemies[i].GetHowManyTimesGotPowerUped());
+            }
+        }
+        
+        static private void PowerUpEnemy()
+        {
             Console.Write("How much do you want to powerup health? ");
             int healthPowerUp = int.Parse(Console.ReadLine());
             Console.Write("How much do you want to powerup shield? ");
@@ -46,11 +66,6 @@ namespace MyGame
                     whichPowerup = Enemy.PowerUp.health & Enemy.PowerUp.shield;
                     enemies[i].PickupPowerUp(whichPowerup, shieldPowerUp);
                 }
-            }
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                Console.WriteLine("{0} {1} {2}", enemies[i].GetName() , enemies[i].GetHealth(),  enemies[i].GetShield());
             }
         }
     }

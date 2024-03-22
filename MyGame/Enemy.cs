@@ -10,6 +10,8 @@ namespace MyGame
 
         [Flags] public enum PowerUp{ health = 1 << 0, shield = 1 << 1}
 
+        static int howMuchPowerUps = 0;
+
         // Construtor
         public Enemy(string name)
         {
@@ -48,17 +50,19 @@ namespace MyGame
 
                 health += f;
                 shield += f;
-                if (health > 100f)
-                {
-                    health = 100f;
-                    Console.WriteLine("As health of {0} was pass 100, it was set to 100", this.name);
-                }
-                if (shield > 100f)
-                {
-                    shield = 100f;
-                    Console.WriteLine("As shield of {0} was pass 100, it was set to 100", this.name);
-                }
             }
+            if (health > 100f)
+            {
+                health = 100f;
+                Console.WriteLine("As health of {0} was pass 100, it was set to 100", this.name);
+            }
+            if (shield > 100f)
+            {
+                shield = 100f;
+                Console.WriteLine("As shield of {0} was pass 100, it was set to 100", this.name);
+            }
+            
+            howMuchPowerUps ++;
         }
         
         public string GetName()
@@ -79,6 +83,11 @@ namespace MyGame
         public float GetShield()
         {
             return shield;
+        }
+
+        public int GetHowManyTimesGotPowerUped()
+        {
+            return howMuchPowerUps;
         }
     }
 }
