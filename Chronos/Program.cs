@@ -40,10 +40,10 @@ namespace Chronos
             Console.WriteLine("Program unpaused!");
 
             crono1.Stop();
-            Console.WriteLine("Crono1 stopped at {0}", (float)Math.Round(crono1.ElapsedMilliseconds/1000f, 3));
+            Console.WriteLine("Crono1 stopped at {0}", Math.Round((float)crono1.ElapsedMilliseconds/1000, 3));
 
             crono2.Stop();
-            Console.WriteLine("Crono2 stopped at {0}", (float)Math.Round(crono2.ElapsedMilliseconds/1000f, 3));
+            Console.WriteLine("Crono2 stopped at {0}", Math.Round((float)crono2.ElapsedMilliseconds/1000, 3));
         }
     }
 }
