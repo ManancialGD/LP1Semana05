@@ -21,7 +21,37 @@ namespace MyGame
             for (int i = 0; i < enemies.Length; i++)
             {
                 Console.WriteLine("{0} {1} {2}", enemies[i].GetName() , enemies[i].GetHealth(),  enemies[i].GetShield());
-            }   
+            }
+            
+            Console.Write("How much do you want to powerup health? ");
+            int healthPowerUp = int.Parse(Console.ReadLine());
+            Console.Write("How much do you want to powerup shield? ");
+            int shieldPowerUp = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy.PowerUp whichPowerup;
+                if (healthPowerUp != 0) if (shieldPowerUp == 0)
+                {
+                    whichPowerup = Enemy.PowerUp.health;
+                    enemies[i].PickupPowerUp(whichPowerup, healthPowerUp);
+                }
+                if (shieldPowerUp != 0) if (healthPowerUp == 0)
+                {
+                    whichPowerup = Enemy.PowerUp.shield;
+                    enemies[i].PickupPowerUp(whichPowerup, shieldPowerUp);
+                }
+                if (healthPowerUp != 0 && shieldPowerUp != 0)
+                {
+                    whichPowerup = Enemy.PowerUp.health & Enemy.PowerUp.shield;
+                    enemies[i].PickupPowerUp(whichPowerup, shieldPowerUp);
+                }
+            }
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.WriteLine("{0} {1} {2}", enemies[i].GetName() , enemies[i].GetHealth(),  enemies[i].GetShield());
+            }
         }
     }
 }
